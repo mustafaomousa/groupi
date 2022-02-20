@@ -1,7 +1,8 @@
-import imp
-from .db import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
+from datetime import datetime
+
+from .db import db
 
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
@@ -13,6 +14,9 @@ class User(db.Model, UserMixin):
     profile_picture = db.Column(db.Text)
     bio = db.Column(db.Text)
     hashed_password = db.Column(db.String(255), nullable=False)
+    created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+
+    friends = db.relationship('Friendship', backref='user', lazy=True)
 
     @property
     def password(self):
@@ -35,4 +39,5 @@ class User(db.Model, UserMixin):
             'dob': self.dob,
             'profile_picture': self.profile_picture,
             'bio': self.bio,
+            'created': self.created,
         }
