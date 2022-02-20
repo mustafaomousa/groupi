@@ -12,8 +12,11 @@ flask-wtf = "*"
 flask-login = "*"
 flask-sqlalchemy = "*"
 werkzeug = "*"
+psycopg2 = "*"
 
 [dev-packages]
+psycopg2-binary = "*"
+psycopg2 = "*"
 
 [requires]
 python_version = "3.9"
