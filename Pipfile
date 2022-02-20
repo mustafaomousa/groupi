@@ -5,6 +5,11 @@ name = "pypi"
 
 [packages]
 python-dotenv = "*"
+flask = "*"
+flask-cors = "*"
+flask-migrate = "*"
+flask-wtf = "*"
+flask-login = "*"
 
 [dev-packages]
 
