@@ -10,6 +10,8 @@ flask-cors = "*"
 flask-migrate = "*"
 flask-wtf = "*"
 flask-login = "*"
+flask-sqlalchemy = "*"
+werkzeug = "*"
 
 [dev-packages]
 
