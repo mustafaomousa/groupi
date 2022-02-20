@@ -1,5 +1,5 @@
 import os
-from flask import Flask
+from flask import Flask, request, redirect
 from flask_login import LoginManager
 from flask_migrate import Migrate
 from flask_cors import CORS
@@ -10,6 +10,7 @@ from .models import db, User
 from .api.auth_routes import auth_routes
 from .api.user_routes import user_routes
 from .api.group_routes import group_routes
+from .api.membership_routes import membership_routes
 
 app = Flask(__name__)
 
@@ -25,6 +26,7 @@ db.init_app(app)
 app.register_blueprint(user_routes, url_prefix='/api/users')
 app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(group_routes, url_prefix='/api/groups')
+app.register_blueprint(membership_routes, url_prefix='/api/memberships')
 Migrate(app, db)
 CORS(app)
 
