@@ -17,6 +17,8 @@ class User(db.Model, UserMixin):
     created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
 
     friends = db.relationship('Friendship', backref='user', lazy=True)
+    admin_groups = db.relationship('Group', backref='user', lazy=True)
+    groups = db.relationship('GroupMember', backref='user', lazy=True)
 
     @property
     def password(self):
