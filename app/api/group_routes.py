@@ -1,8 +1,8 @@
 from flask import Blueprint, request
 from flask_login import login_required, current_user
 
-from app.models import db, Group
-from app.forms import GroupForm
+from app.models import db, Group, GroupMember
+from app.forms import GroupForm, MembershipForm
 
 def validation_errors_to_error_messages(validation_errors):
     errorMessages = []
@@ -28,6 +28,15 @@ def new_group():
             admin_id=current_user.id,
         )
         db.session.add(group)
+        db.session.commit()
+        membership = GroupMember(
+            group_id=group.id,
+            user_id=current_user.id,
+            requested=True,
+            accepted=True,
+            requested_message='You are the admin of the group'
+        )
+        db.session.add(membership)
         db.session.commit()
         return group.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
