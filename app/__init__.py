@@ -7,6 +7,8 @@ from flask_wtf.csrf import generate_csrf
 
 from .config import Config
 from .models import db, User
+from .api.auth_routes import auth_routes
+from .api.user_routes import user_routes
 
 app = Flask(__name__)
 
@@ -19,6 +21,8 @@ def load_user(id):
 
 app.config.from_object(Config)
 db.init_app(app)
+app.register_blueprint(user_routes, url_prefix='/api/users')
+app.register_blueprint(auth_routes, url_prefix='/api/auth')
 Migrate(app, db)
 CORS(app)
 

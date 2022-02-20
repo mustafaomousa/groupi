@@ -16,9 +16,8 @@ class User(db.Model, UserMixin):
     hashed_password = db.Column(db.String(255), nullable=False)
     created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
 
-    friends = db.relationship('Friendship', backref='user', lazy=True)
-    admin_groups = db.relationship('Group', backref='user', lazy=True)
-    groups = db.relationship('GroupMember', backref='user', lazy=True)
+    owned_groups = db.relationship('Group', backref='user', lazy=True)
+    group_memberships = db.relationship('GroupMember', backref='user')
 
     @property
     def password(self):
@@ -31,6 +30,19 @@ class User(db.Model, UserMixin):
     def check_password(self, password):
         return check_password_hash(self.password, password)
 
+    def to_simple_dict(self):
+        return {
+            'id': self.id,
+            'username': self.username,
+            'email': self.email,
+            'f_name': self.f_name,
+            'l_name': self.l_name,
+            'dob': self.dob,
+            'profile_picture': self.profile_picture,
+            'bio': self.bio,
+            'created': self.created,
+        }
+
     def to_dict(self):
         return {
             'id': self.id,
@@ -42,4 +54,7 @@ class User(db.Model, UserMixin):
             'profile_picture': self.profile_picture,
             'bio': self.bio,
             'created': self.created,
+            'owned_groups': {group.id: group.to_dict() for group in self.owned_groups},
+            'joined_groups': {membership.group.id: membership.group.to_dict() for membership in self.group_memberships if membership.accepted == True},
+            'pending_requests': {membership.id: membership.to_dict() for membership in self.group_memberships if (membership.accepted == False and membership.requested == True)}
         }
