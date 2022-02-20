@@ -1,9 +1,13 @@
-function App() {
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+
+const App = () => {
   return (
-    <div>
-      <p className="font-extrabold text-5xl">Hey</p>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<p>Hey</p>} />
+      </Routes>
+    </BrowserRouter>
   );
-}
+};
 
 export default App;
