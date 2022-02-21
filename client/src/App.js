@@ -7,6 +7,7 @@ import Welcome from "./components/Welcome";
 import { authenticate } from "./store/session";
 import Signup from "./components/Signup";
 import Dashboard from "./components/Dashboard";
+import GroupForm from "./forms/GroupForm";
 
 const App = () => {
   const [loaded, setLoaded] = useState(false);
@@ -30,7 +31,9 @@ const App = () => {
           <Route path="" element={<Login />} />
           <Route path="join" element={<Signup />} />
         </Route>
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/dashboard" element={<Dashboard />}>
+          <Route path="new_group" element={<GroupForm />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );
