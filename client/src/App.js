@@ -6,6 +6,7 @@ import Login from "./components/Login";
 import Welcome from "./components/Welcome";
 import { authenticate } from "./store/session";
 import Signup from "./components/Signup";
+import Dashboard from "./components/Dashboard";
 
 const App = () => {
   const [loaded, setLoaded] = useState(false);
@@ -29,6 +30,7 @@ const App = () => {
           <Route path="" element={<Login />} />
           <Route path="join" element={<Signup />} />
         </Route>
+        <Route path="/dashboard" element={<Dashboard />} />
       </Routes>
     </BrowserRouter>
   );
