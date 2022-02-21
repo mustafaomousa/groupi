@@ -14,32 +14,37 @@ def validation_errors_to_error_messages(validation_errors):
 group_routes = Blueprint('groups', __name__)
 
 
-@group_routes.route('/', methods=['POST'])
+@group_routes.route('/', methods=['POST', 'GET'])
 # @login_required
-def new_group():
-    form = GroupForm()
-    form['csrf_token'].data = request.cookies['csrf_token']
-    if form.validate_on_submit():
-        group = Group(
-            name=form.data['name'],
-            bio=form.data['bio'],
-            header_picture=form.data['header_picture'],
-            profile_picture=form.data['profile_picture'],
-            admin_id=current_user.id,
-        )
-        db.session.add(group)
-        db.session.commit()
-        membership = GroupMember(
-            group_id=group.id,
-            user_id=current_user.id,
-            requested=True,
-            accepted=True,
-            requested_message='You are the admin of the group'
-        )
-        db.session.add(membership)
-        db.session.commit()
-        return group.to_dict()
-    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+def groups():
+    if request.method == 'GET':
+        groups = GroupMember.query.filter_by(user_id=current_user.id)
+        return {group.id:group.to_dict() for group in groups}
+    if request.method == 'POST':
+        form = GroupForm()
+        form['csrf_token'].data = request.cookies['csrf_token']
+        print(form.data)
+        if form.validate_on_submit():
+            group = Group(
+                name=form.data['name'],
+                bio=form.data['bio'],
+                header_picture=form.data['header_picture'],
+                profile_picture=form.data['profile_picture'],
+                admin_id=current_user.id,
+            )
+            db.session.add(group)
+            db.session.commit()
+            membership = GroupMember(
+                group_id=group.id,
+                user_id=current_user.id,
+                requested=True,
+                accepted=True,
+                requested_message='You are the admin of the group'
+            )
+            db.session.add(membership)
+            db.session.commit()
+            return {membership.id: membership.to_dict()}
+        return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
 

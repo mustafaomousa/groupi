@@ -1,6 +1,9 @@
 import { Field, Form, Formik } from "formik";
+import { useDispatch } from "react-redux";
+import { newGroup } from "../store/memberships";
 
 const GroupForm = () => {
+  const dispatch = useDispatch();
   return (
     <Formik
       initialValues={{
@@ -9,7 +12,15 @@ const GroupForm = () => {
         header_picture: "",
         profile_picture: "",
       }}
-      onSubmit={async (values, actions) => {}}
+      onSubmit={async (values, actions) => {
+        const group = {
+          name: values.name,
+          bio: values.bio,
+          header: values.header,
+          profile_picture: values.profile_picture,
+        };
+        await dispatch(newGroup(group));
+      }}
     >
       {(props) => (
         <Form className="w-full" method="post">
@@ -29,7 +40,7 @@ const GroupForm = () => {
               <p className="text-xs text-red-700">{props.errors.bio}</p>
             </div>
             <button
-              className="w-full bg-zinc-800 hover:bg-zinc-700 disabled:bg-zinc-200 text-white font-bold px-2 py-1.5 rounded shadow"
+              className="w-full bg-zinc-600 hover:bg-zinc-500 disabled:bg-zinc-200 text-white font-bold px-2 py-1.5 rounded shadow"
               type="submit"
               disabled={props.isSubmitting}
             >
