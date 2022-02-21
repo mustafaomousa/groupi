@@ -24,12 +24,12 @@ def new_membership():
             group_id=form.data['group_id'],
             user_id=form.data['user_id'],
             requested=form.data['requested'],
-            accepted=form.data['accepted'],
+            accepted=True,
             requested_message=form.data['requested_message']
         )
         db.session.add(membership)
         db.session.commit()
-        return membership.to_dict()
+        return {membership.user.id: membership.user.to_dict()}
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
