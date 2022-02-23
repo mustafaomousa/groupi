@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getGroup } from "../../store/group";
+import MemberList from "./MemberList";
 import NewMember from "./NewMember";
 
 const Group = () => {
@@ -37,16 +38,7 @@ const Group = () => {
       )}
       <div className="">
         <div className="flex p-5 border-b-[1px] flex-wrap gap-2">
-          {group.members &&
-            Object.keys(group.members).map((memberId) => {
-              const member = group.members[memberId];
-              return (
-                <img
-                  src={member.profile_picture}
-                  className="h-10 w-10 bg-zinc-300 rounded-full object-cover"
-                />
-              );
-            })}
+          <MemberList group={group} />
           <button
             onClick={toggleAddUser}
             className="h-10 w-10 bg-zinc-300 rounded-full object-cover border-green-700 hover:border-2 flex items-center justify-center"
