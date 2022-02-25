@@ -14,7 +14,7 @@ const JoinedGroups = () => {
 
   return (
     <div className="">
-      <div className="text-zinc-100 px-2 py-2 border-y border-zinc-600 bg-zinc-800">
+      <div className="text-zinc-100 px-2 py-2 bg-zinc-900">
         <p className="text-xs uppercase">groups</p>
       </div>
       <div className="divide-y-[1px] divide-zinc-600 bg-zinc-700">

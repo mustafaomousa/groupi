@@ -14,7 +14,7 @@ const Dashboard = () => {
       <Header />
       <div className="flex pt-[55px] h-screen">
         <SideNavigator />
-        <div className="w-full bg-zinc-500">
+        <div className="w-full bg-zinc-50 overflow-scroll">
           <Outlet />
         </div>
       </div>
