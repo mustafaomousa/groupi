@@ -2,11 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getGroup } from "../../store/group";
-<<<<<<< HEAD
 import Header from "./Header";
-=======
-import MemberList from "./MemberList";
->>>>>>> d5b2472c62a83b4e9184be47b359457ffd579043
 import NewMember from "./NewMember";
 
 const Group = () => {
@@ -25,7 +21,6 @@ const Group = () => {
   if (!group) return null;
 
   return (
-<<<<<<< HEAD
     <div className="divide-y-[1px] divide-zinc-900">
       <Header group={group} />
       <SectionTitle>members</SectionTitle>
@@ -46,42 +41,6 @@ const Group = () => {
         >
           +
         </button>
-=======
-    <div className="max-w-7xl bg-zinc-100 h-full">
-      {group && (
-        <div className="flex justify-between w-full bg-zinc-200 text-3xl p-5">
-          <div className="flex items-center space-x-5">
-            <img className="h-16 w-16 bg-zinc-300 rounded-full object-cover" />
-            <div>
-              <p className="text-lg font-bold">{group.name}</p>
-              <p className="text-lg">{group.bio}</p>
-            </div>
-          </div>
-          <div className="flex flex-col text-sm">
-            <a>edit</a>
-            <a>delete</a>
-          </div>
-        </div>
-      )}
-      <div className="">
-        <div className="flex p-5 border-b-[1px] flex-wrap gap-2">
-          <MemberList group={group} />
-          <button
-            onClick={toggleAddUser}
-            className="h-10 w-10 bg-zinc-300 rounded-full object-cover border-green-700 hover:border-2 flex items-center justify-center"
-          >
-            +
-          </button>
-        </div>
-        <NewMember
-          toggleAddUser={toggleAddUser}
-          addUserShown={addUserShown}
-          group={group}
-        />
-        <div className="">
-          <p>messages</p>
-        </div>
->>>>>>> d5b2472c62a83b4e9184be47b359457ffd579043
       </div>
       <NewMember
         toggleAddUser={toggleAddUser}
