@@ -4,7 +4,7 @@ const User = () => {
   const sessionUser = useSelector((state) => state.session.user);
 
   return (
-    <div className="text-white p-2">
+    <div className="text-white p-2 space-y-2">
       <div className="flex items-center">
         <img
           src={sessionUser.profile_picture}
@@ -16,6 +16,9 @@ const User = () => {
           </p>
           <p className="text-sm">{sessionUser.username}</p>
         </div>
+      </div>
+      <div>
+        <p className="text-xs antialiased">{sessionUser.bio}</p>
       </div>
     </div>
   );
