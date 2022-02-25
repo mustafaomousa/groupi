@@ -7,6 +7,10 @@ import { login } from "../store/session";
 const Login = () => {
   const dispatch = useDispatch();
 
+  const demoLogin = async () => {
+    await dispatch(login("demouser", "password"));
+  };
+
   return (
     <div className="flex flex-col items-center">
       <Formik
@@ -43,6 +47,14 @@ const Login = () => {
                 disabled={props.isSubmitting}
               >
                 Log in
+              </button>
+              <button
+                onClick={demoLogin}
+                type="button"
+                className="w-full bg-zinc-500 hover:bg-zinc-400 disabled:bg-zinc-200 text-white font-bold px-2 py-1.5 rounded shadow"
+                disabled={props.isSubmitting}
+              >
+                Demo
               </button>
             </div>
           </Form>

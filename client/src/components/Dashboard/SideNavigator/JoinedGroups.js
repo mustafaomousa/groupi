@@ -13,11 +13,11 @@ const JoinedGroups = () => {
   }, [dispatch]);
 
   return (
-    <div>
-      <div className="text-white pb-2">
-        <p className="text-lg">joined groups</p>
+    <div className="">
+      <div className="text-zinc-100 px-2 py-2 border-y border-zinc-600 bg-zinc-800">
+        <p className="text-xs uppercase">groups</p>
       </div>
-      <div className="divide-y-[1px] bg-zinc-100">
+      <div className="divide-y-[1px] divide-zinc-600 bg-zinc-700">
         {groupMemberships ? (
           Object.keys(groupMemberships).map((membershipId) => {
             const membership = groupMemberships[membershipId];

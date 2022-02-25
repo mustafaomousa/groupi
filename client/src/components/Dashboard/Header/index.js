@@ -12,7 +12,7 @@ const Header = () => {
   };
 
   return (
-    <div className="fixed px-5 bg-zinc-800 border-b-[1px] border-zinc-600  flex items-center justify-between h-[55px] w-full">
+    <div className="fixed px-5 bg-zinc-900 border-b-[1px] border-zinc-900 flex items-center justify-between h-[55px] w-full">
       <p className="text-center text-3xl text-white antialiased font-bold select-none">
         groupi.
       </p>

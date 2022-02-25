@@ -14,7 +14,7 @@ const Dashboard = () => {
       <Header />
       <div className="flex pt-[55px] h-screen">
         <SideNavigator />
-        <div className="p-5 w-full">
+        <div className="w-full bg-zinc-500">
           <Outlet />
         </div>
       </div>
