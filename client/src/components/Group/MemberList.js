@@ -9,7 +9,7 @@ const MemberList = ({ group }) => {
   if (!group.members) return null;
 
   return (
-    <div className="flex flex-wrap p-2">
+    <div className="flex flex-wrap bg-zinc-900 p-2 transition-all md:p-4">
       {group.members &&
         Object.keys(group.members).map((memberId) => {
           const member = group.members[memberId];
