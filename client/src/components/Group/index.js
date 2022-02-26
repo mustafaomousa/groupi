@@ -35,7 +35,7 @@ const Group = () => {
         <button
           type="button"
           id="messages"
-          className="flex w-full items-center justify-between border-t-2 border-zinc-800 bg-zinc-900 p-2 text-xs font-bold uppercase text-zinc-50 transition-all hover:bg-zinc-800 focus:bg-zinc-800 md:p-4 md:text-sm"
+          className="flex w-full items-center justify-between  bg-zinc-900 p-2 text-xs font-bold uppercase text-zinc-50 transition-all hover:bg-zinc-800 focus:bg-zinc-800 md:p-4 md:text-sm"
           onClick={handleToggleSection}
         >
           <span className="flex items-center uppercase">messages</span>
@@ -52,7 +52,7 @@ const Group = () => {
         </div>
         <button
           id="events"
-          className=" flex w-full items-center justify-between border-t-2 border-zinc-800 bg-zinc-900 p-2 text-xs font-bold uppercase text-zinc-50 transition-all hover:bg-zinc-800 focus:bg-zinc-800 md:p-4 md:text-sm"
+          className=" flex w-full items-center justify-between bg-zinc-900 p-2 text-xs font-bold uppercase text-zinc-50 transition-all hover:bg-zinc-800 focus:bg-zinc-800 md:p-4 md:text-sm"
           onClick={handleToggleSection}
         >
           <span className="flex items-center uppercase">events</span>
@@ -68,7 +68,7 @@ const Group = () => {
         </div>
         <button
           id="media"
-          className="flex w-full items-center justify-between border-t-2 border-zinc-800 bg-zinc-900 p-2 text-xs font-bold uppercase text-zinc-50 transition-all hover:bg-zinc-800 focus:bg-zinc-800 md:p-4 md:text-sm"
+          className="flex w-full items-center justify-between bg-zinc-900 p-2 text-xs font-bold uppercase text-zinc-50 transition-all hover:bg-zinc-800 focus:bg-zinc-800 md:p-4 md:text-sm"
           onClick={handleToggleSection}
         >
           <span className="flex items-center uppercase">media</span>

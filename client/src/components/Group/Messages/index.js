@@ -22,7 +22,7 @@ const Message = ({ message, sessionUser }) => {
       } items-start space-y-1 p-2`}
     >
       <div
-        className={`max-w-[50%] rounded-t-lg border-[1px] bg-white px-2 py-0.5 text-xs shadow md:text-sm ${
+        className={`max-w-[300px] break-words rounded-t-lg border-[1px] bg-white px-2 py-0.5 text-xs shadow md:text-sm ${
           sessionUser.id === message.user.id ? "rounded-bl-lg" : "rounded-br-lg"
         }`}
       >

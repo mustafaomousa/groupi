@@ -1,5 +1,6 @@
-const SET_GROUP = "session/SET_GROUP";
-const SET_MEMBER = "session/SET_MEMBER";
+const SET_GROUP = "group/SET_GROUP";
+const SET_MEMBER = "group/SET_MEMBER";
+const ADD_MESSAGE = "group/ADD_MESSAGE";
 
 const setGroup = (group) => ({
   type: SET_GROUP,
@@ -11,7 +12,10 @@ const setMember = (member) => ({
   payload: member,
 });
 
-const initialState = {};
+const addMessage = (message) => ({
+  type: ADD_MESSAGE,
+  payload: message,
+});
 
 export const getGroup = (groupId) => async (dispatch) => {
   const response = await fetch(`/api/groups/${groupId}`);
@@ -59,6 +63,32 @@ export const inviteMember = (membership) => async (dispatch) => {
   }
 };
 
+export const createGroupMessage = (groupId, message) => async (dispatch) => {
+  const response = await fetch(`/api/groups/${groupId}/messages`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      message: message,
+    }),
+  });
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(addMessage(data));
+    return null;
+  } else if (response.status < 500) {
+    const data = await response.json();
+    if (data.errors) {
+      return data.errors;
+    }
+  } else {
+    return ["An error occurred. Please try again."];
+  }
+};
+
+const initialState = {};
+
 export default function reducer(state = initialState, action) {
   switch (action.type) {
     case SET_GROUP:
@@ -71,6 +101,14 @@ export default function reducer(state = initialState, action) {
         members: {
           ...state.members,
           ...action.payload,
+        },
+      };
+    case ADD_MESSAGE:
+      return {
+        ...state,
+        messages: {
+          ...state.messages,
+          [action.payload.id]: action.payload,
         },
       };
     default:
