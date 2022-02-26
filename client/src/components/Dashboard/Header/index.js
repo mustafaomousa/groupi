@@ -12,15 +12,15 @@ const Header = () => {
   };
 
   return (
-    <div className="fixed px-5 bg-zinc-900 border-b-[1px] border-zinc-900 flex items-center justify-between h-[55px] w-full">
-      <p className="text-center text-3xl text-white antialiased font-bold select-none">
+    <div className="fixed flex h-[55px] w-full items-center justify-between border-b-[1px] border-zinc-900 bg-zinc-900 px-5">
+      <p className="select-none text-center text-xl font-bold text-white antialiased transition-all md:text-2xl">
         groupi.
       </p>
       <button
-        className="bg-zinc-700 hover:bg-zinc-600 text-white py-0.5 px-2 rounded-sm hover:shadow-lg"
+        className="rounded-sm text-xs text-white transition-all hover:text-red-700 md:text-sm"
         onClick={signOutUser}
       >
-        sign out
+        log out
       </button>
     </div>
   );

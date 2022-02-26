@@ -25,16 +25,16 @@ const Login = () => {
       >
         {(props) => (
           <Form className="w-full" method="post">
-            <div className="p-10 space-y-4">
+            <div className="space-y-4 p-10">
               <div className="space-y-2">
                 <Field
-                  className="w-full bg-zinc-50 px-2 py-1.5 border rounded"
+                  className="w-full rounded border bg-zinc-50 px-2 py-1.5"
                   name="username"
                   placeholder="username"
                 />
                 <p className="text-xs text-red-700">{props.errors.username}</p>
                 <Field
-                  className="w-full bg-zinc-50 px-2 py-1.5 border rounded"
+                  className="w-full rounded border bg-zinc-50 px-2 py-1.5"
                   type="password"
                   name="password"
                   placeholder="password"
@@ -42,7 +42,7 @@ const Login = () => {
                 <p className="text-xs text-red-700">{props.errors.password}</p>
               </div>
               <button
-                className="w-full bg-zinc-800 hover:bg-zinc-700 disabled:bg-zinc-200 text-white font-bold px-2 py-1.5 rounded shadow"
+                className="w-full rounded bg-zinc-800 px-2 py-1.5 font-bold text-white shadow hover:bg-zinc-700 disabled:bg-zinc-200"
                 type="submit"
                 disabled={props.isSubmitting}
               >
@@ -51,7 +51,7 @@ const Login = () => {
               <button
                 onClick={demoLogin}
                 type="button"
-                className="w-full bg-zinc-500 hover:bg-zinc-400 disabled:bg-zinc-200 text-white font-bold px-2 py-1.5 rounded shadow"
+                className="w-full rounded bg-zinc-500 px-2 py-1.5 font-bold text-white shadow hover:bg-zinc-400 disabled:bg-zinc-200"
                 disabled={props.isSubmitting}
               >
                 Demo
@@ -62,7 +62,7 @@ const Login = () => {
       </Formik>
       <Link
         to={"join"}
-        className="text-sm hover:underline hover:font-semibold transition-all"
+        className="text-sm transition-all hover:font-semibold hover:underline"
       >
         switch to sign up
       </Link>

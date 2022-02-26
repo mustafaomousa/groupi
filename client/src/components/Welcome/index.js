@@ -11,9 +11,9 @@ const Welcome = () => {
   }, [sessionUser]);
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen ">
-      <div className="w-full max-w-[350px] bg-white border border-zinc-300 pb-5">
-        <p className="text-center pt-10 text-4xl font-bold">groupi.</p>
+    <div className="flex h-screen flex-col items-center justify-center ">
+      <div className="w-full max-w-[350px] border border-zinc-300 bg-white pb-5">
+        <p className="pt-10 text-center text-4xl font-bold">groupi.</p>
         <Outlet />
       </div>
     </div>

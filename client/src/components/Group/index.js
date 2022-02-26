@@ -33,8 +33,11 @@ const Group = () => {
 
 const SectionTitle = (props) => {
   return (
-    <div className="p-2 bg-zinc-500 shadow-md">
-      <p {...props} className="uppercase text-xs text-zinc-100"></p>
+    <div className="bg-zinc-800 p-2 shadow-md">
+      <p
+        {...props}
+        className="text-xs font-bold uppercase text-zinc-100 transition-all md:text-sm"
+      ></p>
     </div>
   );
 };

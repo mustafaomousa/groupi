@@ -21,19 +21,19 @@ const OwnedGroups = () => {
 
   return (
     <div>
-      <div className="flex justify-between items-center text-white pb-2">
+      <div className="flex items-center justify-between pb-2 text-white">
         <p className="text-lg">owned groups</p>
         {newGroupOpen ? (
           <button
             onClick={toggleNewGroup}
-            className={`bg-zinc-800 hover:text-red-500 text-white font-semibold text-xs`}
+            className={`bg-zinc-800 text-xs font-semibold text-white hover:text-red-500`}
           >
             - cancel
           </button>
         ) : (
           <button
             onClick={toggleNewGroup}
-            className={`bg-zinc-800 hover:text-green-500 text-white font-semibold text-xs`}
+            className={`bg-zinc-800 text-xs font-semibold text-white hover:text-green-500`}
           >
             + create
           </button>
@@ -42,7 +42,7 @@ const OwnedGroups = () => {
       <div
         className={`${
           !newGroupOpen && "hidden"
-        } bg-zinc-800 border border-zinc-700 mb-5 p-5`}
+        } mb-5 border border-zinc-700 bg-zinc-800 p-5`}
       >
         <GroupForm />
       </div>
@@ -54,7 +54,7 @@ const OwnedGroups = () => {
               return <MembershipTab membership={membership} />;
           })
         ) : (
-          <p className="border border-zinc-300 rounded p-2 w-full text-center text-sm text-zinc-400">
+          <p className="w-full rounded border border-zinc-300 p-2 text-center text-sm text-zinc-400">
             no joined groups
           </p>
         )}

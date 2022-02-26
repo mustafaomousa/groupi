@@ -10,11 +10,11 @@ const Dashboard = () => {
   if (!sessionUser) return <p>no user</p>;
 
   return (
-    <div className="w-full grid auto-rows-min">
+    <div className="grid w-full auto-rows-min">
       <Header />
-      <div className="flex pt-[55px] h-screen">
+      <div className="flex h-screen pt-[55px]">
         <SideNavigator />
-        <div className="w-full bg-zinc-50 overflow-scroll">
+        <div className="w-full overflow-scroll bg-zinc-50">
           <Outlet />
         </div>
       </div>

@@ -45,9 +45,9 @@ const NewMember = ({ group, toggleAddUser, addUserShown }) => {
     <div
       class={`${
         !addUserShown && "hidden"
-      } absolute top-0 left-0 flex items-center justify-center  w-screen h-screen bg-white/30 backdrop-blur-sm`}
+      } absolute top-0 left-0 flex h-screen w-screen  items-center justify-center bg-white/30 backdrop-blur-sm`}
     >
-      <div class="w-[600px] p-5 bg-white flex flex-col items-start">
+      <div class="flex w-[600px] flex-col items-start bg-white p-5">
         <Formik
           initialValues={{ requested_message: "" }}
           onSubmit={async (values, actions) => {
@@ -68,16 +68,16 @@ const NewMember = ({ group, toggleAddUser, addUserShown }) => {
         >
           {(props) => (
             <Form className="w-full" method="post">
-              <div className="p-10 space-y-4">
+              <div className="space-y-4 p-10">
                 <div className="space-y-2">
                   <div>
                     <input
                       onChange={onSearchUser}
-                      className="w-full bg-zinc-50 px-2 py-1.5 border rounded"
+                      className="w-full rounded border bg-zinc-50 px-2 py-1.5"
                       name="username"
                       placeholder="@ username"
                     />
-                    <div className="flex flex-col divide-y-[1px] divide-zinc-300 bg-zinc-100 max-h-20 overflow-y-scroll">
+                    <div className="flex max-h-20 flex-col divide-y-[1px] divide-zinc-300 overflow-y-scroll bg-zinc-100">
                       {userSearchResults &&
                         Object.keys(userSearchResults).length !== 0 &&
                         Object.keys(userSearchResults).map((userId) => {
@@ -101,7 +101,7 @@ const NewMember = ({ group, toggleAddUser, addUserShown }) => {
                         return (
                           <button
                             onClick={(e) => removeSelectedUser(e, user.id)}
-                            className="border rounded  px-1.5 bg-zinc-800 text-white text-sm"
+                            className="rounded border  bg-zinc-800 px-1.5 text-sm text-white"
                           >
                             {user.username}
                           </button>
@@ -109,13 +109,13 @@ const NewMember = ({ group, toggleAddUser, addUserShown }) => {
                       })}
                   </div>
                   <Field
-                    className="w-full bg-zinc-50 px-2 py-1.5 border rounded"
+                    className="w-full rounded border bg-zinc-50 px-2 py-1.5"
                     name="requested_message"
                     placeholder="invitation message"
                   />
                 </div>
                 <button
-                  className="w-full bg-zinc-800 hover:bg-zinc-700 disabled:bg-zinc-200 text-white font-bold px-2 py-1.5 rounded shadow"
+                  className="w-full rounded bg-zinc-800 px-2 py-1.5 font-bold text-white shadow hover:bg-zinc-700 disabled:bg-zinc-200"
                   type="submit"
                   disabled={props.isSubmitting}
                 >

@@ -1,21 +1,50 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { getMemberships } from "../../../store/memberships";
+import GroupForm from "../../../forms/GroupForm";
 
 const GroupMemberships = () => {
   const dispatch = useDispatch();
   const groupMemberships = useSelector((state) => state.memberships.joined);
+
+  const [newGroupOpen, setNewGroupOpen] = useState(false);
+
+  const openNewGroup = () => setNewGroupOpen(true);
+  const closeNewGroup = () => setNewGroupOpen(false);
 
   useEffect(() => {
     dispatch(getMemberships());
   }, [dispatch]);
 
   if (!groupMemberships) return null;
+
   return (
-    <div className="">
-      <div className="text-zinc-100 px-2 py-2 bg-zinc-900">
-        <p className="text-xs uppercase">groups</p>
+    <div className="text-xs transition-all md:text-sm">
+      <div className="flex items-center justify-between bg-zinc-900 px-2 py-2 text-zinc-100">
+        <p className="uppercase">groups</p>
+        {newGroupOpen ? (
+          <button
+            onClick={closeNewGroup}
+            className="text rounded hover:text-red-600"
+          >
+            -
+          </button>
+        ) : (
+          <button
+            onClick={openNewGroup}
+            className="text rounded hover:text-green-600"
+          >
+            +
+          </button>
+        )}
+      </div>
+      <div
+        className={`${
+          !newGroupOpen && "h-0 overflow-hidden pb-0"
+        } bg-zinc-900 px-2 pb-2 transition-all hover:h-0`}
+      >
+        <GroupForm />
       </div>
       <div className="divide-y-[1px] divide-zinc-600 bg-zinc-700">
         {Object.keys(groupMemberships).map((membershipId) => {
@@ -30,30 +59,17 @@ const GroupMemberships = () => {
 
 const MembershipTab = ({ membership }) => {
   return (
-    <div className="flex justify-between items-center px-2 py-2">
-      <div className="flex space-x-2 ">
-        <img
-          src={membership.group.profile_picture}
-          className="min-w-[40px] max-w-[40px] h-10 h-10 rounded bg-white shadow"
-        />
-        <div className="flex flex-col">
-          <p className="text-xs text-zinc-50 font-semibold">
-            {membership.group.name}
-          </p>
-          <p className="text-xs text-zinc-400 break-word">
-            {membership.group.bio}
-          </p>
-        </div>
-      </div>
-      <div className="text-xs">
-        <a
-          href={`/dashboard/group/${membership.group.id}`}
-          className="text-zinc-50 hover:text-green-600"
-        >
-          enter
-        </a>
-      </div>
-    </div>
+    <a
+      href={`/dashboard/group/${membership.group.id}`}
+      className="flex w-full items-center p-2 hover:bg-zinc-600"
+    >
+      <img
+        src={membership.group.profile_picture}
+        className="mr-2 h-[30px] w-[30px] rounded bg-white shadow transition-all md:h-[40px] md:w-[40px]"
+      />
+      <p className="font-semibold text-zinc-50">{membership.group.name}</p>
+      {/* <p className="text-zinc-400 break-word">{membership.group.bio}</p> */}
+    </a>
   );
 };
 

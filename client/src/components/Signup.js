@@ -32,17 +32,17 @@ const Signup = () => {
       >
         {(props) => (
           <Form className="w-full" method="post" autocomplete="false">
-            <div className="p-10 space-y-4">
+            <div className="space-y-4 p-10">
               <div className="space-y-2">
                 <Field
-                  className="w-full bg-zinc-50 px-2 py-1.5 border rounded"
+                  className="w-full rounded border bg-zinc-50 px-2 py-1.5"
                   name="username"
                   placeholder="username"
                   required
                 />
                 <p className="text-xs text-red-700">{props.errors.username}</p>
                 <Field
-                  className="w-full bg-zinc-50 px-2 py-1.5 border rounded"
+                  className="w-full rounded border bg-zinc-50 px-2 py-1.5"
                   name="email"
                   placeholder="email"
                   type="email"
@@ -50,23 +50,23 @@ const Signup = () => {
                 />
                 <p className="text-xs text-red-700">{props.errors.email}</p>
                 <Field
-                  className="w-full bg-zinc-50 px-2 py-1.5 border rounded"
+                  className="w-full rounded border bg-zinc-50 px-2 py-1.5"
                   name="f_name"
                   placeholder="first name"
                   required
                 />
                 <p className="text-xs text-red-700">{props.errors.f_name}</p>
                 <Field
-                  className="w-full bg-zinc-50 px-2 py-1.5 border rounded"
+                  className="w-full rounded border bg-zinc-50 px-2 py-1.5"
                   name="l_name"
                   placeholder="last name"
                   required
                 />
                 <p className="text-xs text-red-700">{props.errors.l_name}</p>
                 <div className="flex flex-col space-y-1">
-                  <p className="text-xs pl-1">birthday</p>
+                  <p className="pl-1 text-xs">birthday</p>
                   <Field
-                    className="w-full bg-zinc-50 px-2 py-1.5 border rounded"
+                    className="w-full rounded border bg-zinc-50 px-2 py-1.5"
                     name="dob"
                     placeholder="birthday"
                     type="date"
@@ -74,7 +74,7 @@ const Signup = () => {
                 </div>
                 <p className="text-xs text-red-700">{props.errors.dob}</p>
                 <Field
-                  className="w-full bg-zinc-50 px-2 py-1.5 border rounded"
+                  className="w-full rounded border bg-zinc-50 px-2 py-1.5"
                   type="password"
                   name="confirm_password"
                   placeholder="confirm password"
@@ -83,7 +83,7 @@ const Signup = () => {
                   {props.errors.confirm_password}
                 </p>
                 <Field
-                  className="w-full bg-zinc-50 px-2 py-1.5 border rounded"
+                  className="w-full rounded border bg-zinc-50 px-2 py-1.5"
                   type="password"
                   name="password"
                   placeholder="password"
@@ -91,7 +91,7 @@ const Signup = () => {
                 <p className="text-xs text-red-700">{props.errors.password}</p>
               </div>
               <button
-                className="w-full bg-zinc-800 hover:bg-zinc-700 disabled:bg-zinc-200 text-white font-bold px-2 py-1.5 rounded shadow"
+                className="w-full rounded bg-zinc-800 px-2 py-1.5 font-bold text-white shadow hover:bg-zinc-700 disabled:bg-zinc-200"
                 type="submit"
                 disabled={props.isSubmitting}
               >
@@ -103,7 +103,7 @@ const Signup = () => {
       </Formik>
       <Link
         to={"/"}
-        className="text-sm hover:underline hover:font-semibold transition-all"
+        className="text-sm transition-all hover:font-semibold hover:underline"
       >
         switch to login
       </Link>

@@ -24,23 +24,23 @@ const GroupForm = () => {
     >
       {(props) => (
         <Form className="w-full" method="post">
-          <div className="space-y-4">
-            <div className="space-y-2">
+          <div className="space-y-3">
+            <div className="space-y-1.5">
               <Field
-                className="w-full bg-zinc-50 px-2 py-1.5 border rounded"
+                className="w-full rounded border bg-zinc-50 px-2 py-1"
                 name="name"
                 placeholder="name"
               />
               <p className="text-xs text-red-700">{props.errors.name}</p>
               <Field
-                className="w-full bg-zinc-50 px-2 py-1.5 border rounded"
+                className="w-full rounded border bg-zinc-50 px-2 py-1"
                 name="bio"
                 placeholder="bio"
               />
               <p className="text-xs text-red-700">{props.errors.bio}</p>
             </div>
             <button
-              className="w-full bg-zinc-600 hover:bg-zinc-500 disabled:bg-zinc-200 text-white font-bold px-2 py-1.5 rounded shadow"
+              className="w-full rounded bg-zinc-600 px-2 py-1 font-bold text-white shadow hover:bg-zinc-500 disabled:bg-zinc-200"
               type="submit"
               disabled={props.isSubmitting}
             >
