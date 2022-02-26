@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { getGroup } from "../../store/group";
 import Header from "./Header";
 import MemberList from "./MemberList";
+import Messages from "./Messages";
 import NewMember from "./NewMember";
 import NewMessage from "./NewMessage";
 
@@ -42,11 +43,11 @@ const Group = () => {
         </button>
         <div
           className={`${
-            selectedSection !== "messages" && "h-0 p-0 md:p-0"
-          } h-full overflow-hidden bg-white p-2 shadow-inner transition-all ease-in-out md:p-4`}
+            selectedSection !== "messages" && "h-0 overflow-hidden p-0 md:p-0"
+          } max-h-[400px] overflow-scroll bg-gray-200 p-2 shadow-inner transition-all ease-in-out md:p-4`}
           aria-labelledby="accordion-open-heading-1"
         >
-          <p>messages go here</p>
+          <Messages messages={group.messages} />
           <NewMessage group={group} />
         </div>
         <button
