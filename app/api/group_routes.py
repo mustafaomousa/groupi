@@ -71,11 +71,11 @@ def single_group(id):
         db.session.commit()
         return deleted_group
 
-@group_routes.route('/<int:group_id>/messages', methods=['GET', 'PUT', 'DELETE'])
+@group_routes.route('/<int:group_id>/messages', methods=['GET', 'POST'])
 @login_required
 def group_messages(group_id):
     group = Group.query.get(group_id)
-    if request.method == 'PUT':
+    if request.method == 'POST':
         form = GroupMessageForm()
         form['csrf_token'].data = request.cookies['csrf_token']
         if form.validate_on_submit():
@@ -84,8 +84,10 @@ def group_messages(group_id):
                 user_id=current_user.id,
                 message=form.data['message']
             )
+
             db.session.add(group_message)
             db.session.commit()
+            
             return group_message.to_dict()
         return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 

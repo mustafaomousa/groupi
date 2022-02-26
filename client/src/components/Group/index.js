@@ -5,6 +5,7 @@ import { getGroup } from "../../store/group";
 import Header from "./Header";
 import MemberList from "./MemberList";
 import NewMember from "./NewMember";
+import NewMessage from "./NewMessage";
 
 const Group = () => {
   const params = useParams();
@@ -46,6 +47,7 @@ const Group = () => {
           aria-labelledby="accordion-open-heading-1"
         >
           <p>messages go here</p>
+          <NewMessage group={group} />
         </div>
         <button
           id="events"
