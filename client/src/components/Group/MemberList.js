@@ -13,16 +13,18 @@ const MemberList = ({ group }) => {
       {group.members &&
         Object.keys(group.members).map((memberId) => {
           const member = group.members[memberId];
-          return (
+          return member.profile_picture ? (
             <img
               src={member.profile_picture}
               className="mr-2 h-[30px] w-[30px] rounded-full bg-zinc-300 object-cover shadow-md transition-all md:h-[40px] md:w-[40px]"
             />
+          ) : (
+            <div className="mr-2 h-[30px] w-[30px] rounded-full bg-zinc-300 object-cover shadow-md transition-all md:h-[40px] md:w-[40px]" />
           );
         })}
       <button
         onClick={toggleAddUser}
-        className="flex h-[30px] w-[30px] items-center justify-center rounded-full  border-[1px] object-cover transition-all hover:border-green-500 md:h-[40px] md:w-[40px]"
+        className="flex h-[30px] w-[30px] items-center justify-center rounded-full  border-2 bg-white object-cover transition-all hover:border-green-500 md:h-[40px] md:w-[40px]"
       >
         +
       </button>

@@ -41,12 +41,12 @@ const GroupMemberships = () => {
       </div>
       <div
         className={`${
-          !newGroupOpen && "h-0 overflow-hidden pb-0"
-        } bg-zinc-900 px-2 pb-2 transition-all hover:h-0`}
+          !newGroupOpen && "h-0 overflow-hidden p-0"
+        } bg-zinc-900 p-2 transition-all`}
       >
         <GroupForm />
       </div>
-      <div className="divide-y-[1px] divide-zinc-600 bg-zinc-700">
+      <div>
         {Object.keys(groupMemberships).map((membershipId) => {
           const membership = groupMemberships[membershipId];
 

@@ -22,7 +22,7 @@ const GroupMembershipRequests = () => {
       <div className="bg-zinc-900 px-2 py-2 text-zinc-100">
         <p className="uppercase">requests</p>
       </div>
-      <div className="divide-y-[1px] divide-zinc-600 bg-zinc-700">
+      <div className="bg-zinc-700">
         {Object.keys(groupMemberships).map((membershipId) => {
           const membership = groupMemberships[membershipId];
           return <MembershipTab membership={membership} />;

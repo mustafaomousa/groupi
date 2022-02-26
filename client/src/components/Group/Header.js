@@ -1,6 +1,6 @@
 const Header = ({ group }) => {
   return (
-    <div className="flex w-full bg-zinc-900 p-2 text-3xl transition-all md:p-4">
+    <div className="flex w-full p-2 text-3xl transition-all md:p-4">
       <div className="flex items-center space-x-2 text-zinc-50">
         {group.profile_picture ? (
           <img
