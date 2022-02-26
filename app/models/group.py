@@ -11,6 +11,7 @@ class Group(db.Model):
     created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
 
     members = db.relationship('GroupMember', backref='group')
+    messages = db.relationship('GroupMessage', backref='group')
 
     def to_simple_dict(self):
         return {
@@ -32,6 +33,6 @@ class Group(db.Model):
             'header_picture': self.header_picture,
             'profile_picture': self.profile_picture,
             'created': self.created,
-            'members': {member.user.id:member.user.to_simple_dict() for member in self.members}
-            
+            'members': {member.user.id:member.user.to_simple_dict() for member in self.members},
+            'messages': {message.id:message.to_dict() for message in self.messages}
         }

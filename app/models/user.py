@@ -18,6 +18,7 @@ class User(db.Model, UserMixin):
 
     owned_groups = db.relationship('Group', backref='user', lazy=True)
     group_memberships = db.relationship('GroupMember', backref='user')
+    messages = db.relationship('GroupMessage', backref='user')
 
     @property
     def password(self):

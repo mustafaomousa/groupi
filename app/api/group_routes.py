@@ -1,8 +1,8 @@
 from flask import Blueprint, request
 from flask_login import login_required, current_user
 
-from app.models import db, Group, GroupMember
-from app.forms import GroupForm, MembershipForm
+from app.models import db, Group, GroupMember, GroupMessage
+from app.forms import GroupForm, MembershipForm, GroupMessageForm
 
 def validation_errors_to_error_messages(validation_errors):
     errorMessages = []
@@ -49,7 +49,7 @@ def groups():
 
 
 @group_routes.route('/<int:id>', methods=['GET', 'PUT', 'DELETE'])
-# @login_required
+@login_required
 def single_group(id):
     group = Group.query.get(id)
     if request.method == 'GET':
@@ -70,3 +70,22 @@ def single_group(id):
         db.session.delete(group)
         db.session.commit()
         return deleted_group
+
+@group_routes.route('/<int:group_id>/messages', methods=['GET', 'PUT', 'DELETE'])
+@login_required
+def group_messages(group_id):
+    group = Group.query.get(group_id)
+    if request.method == 'PUT':
+        form = GroupMessageForm()
+        form['csrf_token'].data = request.cookies['csrf_token']
+        if form.validate_on_submit():
+            group_message = GroupMessage(
+                group_id=group.id,
+                user_id=current_user.id,
+                message=form.data['message']
+            )
+            db.session.add(group_message)
+            db.session.commit()
+            return group_message.to_dict()
+        return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
