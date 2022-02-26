@@ -46,10 +46,14 @@ const MembershipTab = ({ membership }) => {
   return (
     <div className="flex flex-col items-center justify-between">
       <div className="flex w-full p-2">
-        <img
-          src={membership.group.profile_picture}
-          className="mr-2 h-10 h-10 min-w-[40px] max-w-[40px] rounded bg-white shadow"
-        />
+        {membership.group.profile_picture ? (
+          <img
+            src={membership.group.profile_picture}
+            className="mr-2 h-[30px] w-[30px] bg-white shadow transition-all md:h-[40px] md:w-[40px]"
+          />
+        ) : (
+          <div className="mr-2 h-[30px] w-[30px]  bg-white shadow transition-all md:h-[40px] md:w-[40px]" />
+        )}
         <div className="flex flex-col">
           <p className="font-semibold text-zinc-50">{membership.group.name}</p>
           <p className="break-word italic text-zinc-400">
@@ -57,11 +61,17 @@ const MembershipTab = ({ membership }) => {
           </p>
         </div>
       </div>
-      <div className="grid w-full grid-cols-2 bg-zinc-600 text-sm uppercase text-white antialiased">
-        <button onClick={acceptRequest} className="hover:bg-green-700">
+      <div className="grid w-full grid-cols-2 bg-zinc-600 text-xs  text-white antialiased">
+        <button
+          onClick={acceptRequest}
+          className="p-1 uppercase hover:bg-green-700"
+        >
           join
         </button>
-        <button onClick={declineRequest} className="hover:bg-red-700">
+        <button
+          onClick={declineRequest}
+          className="p-1 uppercase hover:bg-red-700"
+        >
           decline
         </button>
       </div>

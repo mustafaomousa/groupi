@@ -61,12 +61,16 @@ const MembershipTab = ({ membership }) => {
   return (
     <a
       href={`/dashboard/group/${membership.group.id}`}
-      className="flex w-full items-center p-2 hover:bg-zinc-600"
+      className="flex w-full items-start p-2 hover:bg-zinc-600"
     >
-      <img
-        src={membership.group.profile_picture}
-        className="mr-2 h-[30px] w-[30px] rounded bg-white shadow transition-all md:h-[40px] md:w-[40px]"
-      />
+      {membership.group.profile_picture ? (
+        <img
+          src={membership.group.profile_picture}
+          className="mr-2 h-[30px] w-[30px] bg-white shadow transition-all md:h-[40px] md:w-[40px]"
+        />
+      ) : (
+        <div className="mr-2 h-[30px] w-[30px]  bg-white shadow transition-all md:h-[40px] md:w-[40px]" />
+      )}
       <p className="font-semibold text-zinc-50">{membership.group.name}</p>
       {/* <p className="text-zinc-400 break-word">{membership.group.bio}</p> */}
     </a>
