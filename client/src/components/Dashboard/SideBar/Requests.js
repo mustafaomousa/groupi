@@ -23,7 +23,7 @@ const Requests = () => {
       <div className="flex items-center justify-between border-y-[1px] border-indigo-800 bg-indigo-800 p-2 text-white">
         <p className="font-bold uppercase">requests</p>
       </div>
-      <div>
+      <div className="bg-white">
         {Object.keys(groupMemberships).map((membershipId) => {
           const membership = groupMemberships[membershipId];
           return <MembershipTab membership={membership} />;
@@ -45,7 +45,7 @@ const MembershipTab = ({ membership }) => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-between">
+    <div className="flex flex-col items-center justify-between border-b-[1px]">
       <div className="flex w-full p-2">
         {membership.group.profile_picture ? (
           <img
