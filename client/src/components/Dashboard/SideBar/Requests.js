@@ -6,8 +6,9 @@ import {
   declineGroupMembershipRequest,
   getMemberships,
 } from "../../../store/memberships";
+import Button from "../../Button";
 
-const GroupMembershipRequests = () => {
+const Requests = () => {
   const dispatch = useDispatch();
   const groupMemberships = useSelector((state) => state.memberships.requests);
 
@@ -15,14 +16,14 @@ const GroupMembershipRequests = () => {
     dispatch(getMemberships());
   }, [dispatch]);
 
-  if (!groupMemberships) return null;
+  if (!groupMemberships || groupMemberships === {}) return null;
 
   return (
     <div className="text-xs transition-all md:text-sm">
-      <div className="bg-zinc-900 px-2 py-2 text-zinc-100">
-        <p className="uppercase">requests</p>
+      <div className="flex items-center justify-between border-y-[1px] border-indigo-800 bg-indigo-800 p-2 text-white">
+        <p className="font-bold uppercase">requests</p>
       </div>
-      <div className="bg-zinc-700">
+      <div>
         {Object.keys(groupMemberships).map((membershipId) => {
           const membership = groupMemberships[membershipId];
           return <MembershipTab membership={membership} />;
@@ -49,34 +50,22 @@ const MembershipTab = ({ membership }) => {
         {membership.group.profile_picture ? (
           <img
             src={membership.group.profile_picture}
-            className="mr-2 h-[30px] w-[30px] bg-white shadow transition-all md:h-[40px] md:w-[40px]"
+            className="mr-2 h-[30px] w-[30px] rounded border-[1px] border-indigo-700 bg-indigo-700 transition-all md:h-[40px] md:w-[40px]"
           />
         ) : (
-          <div className="mr-2 h-[30px] w-[30px]  bg-white shadow transition-all md:h-[40px] md:w-[40px]" />
+          <div className="mr-2 h-[30px] w-[30px] rounded border-[1px] border-indigo-700 bg-indigo-700 transition-all md:h-[40px] md:w-[40px]" />
         )}
         <div className="flex flex-col">
-          <p className="font-semibold text-zinc-50">{membership.group.name}</p>
-          <p className="break-word italic text-zinc-400">
-            {membership.requested_message}
-          </p>
+          <p className="font-bold">{membership.group.name}</p>
+          <p className="antialiased">{membership.requested_message}</p>
         </div>
       </div>
-      <div className="grid w-full grid-cols-2 bg-zinc-600 text-xs  text-white antialiased">
-        <button
-          onClick={acceptRequest}
-          className="p-1 uppercase hover:bg-green-700"
-        >
-          join
-        </button>
-        <button
-          onClick={declineRequest}
-          className="p-1 uppercase hover:bg-red-700"
-        >
-          decline
-        </button>
+      <div className="flex w-full justify-end space-x-2 px-2">
+        <Button onClick={acceptRequest}>join</Button>
+        <Button onClick={declineRequest}>decline</Button>
       </div>
     </div>
   );
 };
 
-export default GroupMembershipRequests;
+export default Requests;

@@ -1,7 +1,8 @@
 import { Field, Form, Formik } from "formik";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { inviteMember } from "../../store/group";
+
+import { inviteMember } from "../../../store/group";
 
 const NewMember = ({ group, toggleAddUser, addUserShown }) => {
   const dispatch = useDispatch();

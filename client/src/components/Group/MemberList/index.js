@@ -1,4 +1,5 @@
 import { useState } from "react";
+import UserAvatar from "../../UserAvatar";
 import NewMember from "./NewMember";
 
 const MemberList = ({ group }) => {
@@ -9,18 +10,11 @@ const MemberList = ({ group }) => {
   if (!group.members) return null;
 
   return (
-    <div className="flex flex-wrap bg-zinc-900 p-2 transition-all md:p-4">
+    <div className="flex flex-wrap p-2 transition-all md:p-4">
       {group.members &&
         Object.keys(group.members).map((memberId) => {
           const member = group.members[memberId];
-          return member.profile_picture ? (
-            <img
-              src={member.profile_picture}
-              className="mr-2 h-[30px] w-[30px] rounded-full bg-zinc-300 object-cover shadow-md transition-all md:h-[40px] md:w-[40px]"
-            />
-          ) : (
-            <div className="mr-2 h-[30px] w-[30px] rounded-full bg-zinc-300 object-cover shadow-md transition-all md:h-[40px] md:w-[40px]" />
-          );
+          return <UserAvatar user={member} />;
         })}
       <button
         onClick={toggleAddUser}

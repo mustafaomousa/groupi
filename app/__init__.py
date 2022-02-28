@@ -14,10 +14,9 @@ from .api.membership_routes import membership_routes
 
 app = Flask(__name__)
 
-login = LoginManager(app)
-login.login_view = 'auth.unauthorized'
+login_manager = LoginManager(app)
 
-@login.user_loader
+@login_manager.user_loader
 def load_user(id):
     return User.query.get(int(id))
 

@@ -4,6 +4,7 @@ import { newGroup } from "../store/memberships";
 
 const GroupForm = () => {
   const dispatch = useDispatch();
+
   return (
     <Formik
       initialValues={{
@@ -19,13 +20,16 @@ const GroupForm = () => {
           header: values.header,
           profile_picture: values.profile_picture,
         };
+
         await dispatch(newGroup(group));
+
+        return actions.resetForm();
       }}
     >
       {(props) => (
-        <Form className="w-full" method="post">
-          <div className="space-y-3">
-            <div className="space-y-1.5">
+        <Form method="post">
+          <div className="space-y-2 p-2">
+            <div className="space-y-1">
               <Field
                 className="w-full rounded border bg-zinc-50 px-2 py-1"
                 name="name"
@@ -39,13 +43,15 @@ const GroupForm = () => {
               />
               <p className="text-xs text-red-700">{props.errors.bio}</p>
             </div>
-            <button
-              className="w-full rounded bg-zinc-600 px-2 py-1 font-bold text-white shadow hover:bg-zinc-500 disabled:bg-zinc-200"
-              type="submit"
-              disabled={props.isSubmitting}
-            >
-              create
-            </button>
+            <div className="flex justify-end">
+              <button
+                className="h-6 rounded bg-sky-700 px-1.5 py-1 text-[10px] font-bold uppercase text-white shadow hover:bg-sky-600 disabled:bg-zinc-200 md:h-7 md:text-[12px]"
+                type="submit"
+                disabled={props.isSubmitting}
+              >
+                create
+              </button>
+            </div>
           </div>
         </Form>
       )}

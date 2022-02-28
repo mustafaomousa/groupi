@@ -3,6 +3,7 @@ import { Formik, Field, Form } from "formik";
 import { useDispatch } from "react-redux";
 
 import { login } from "../store/session";
+import Button from "./Button";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -41,21 +42,18 @@ const Login = () => {
                 />
                 <p className="text-xs text-red-700">{props.errors.password}</p>
               </div>
-              <button
-                className="w-full rounded bg-zinc-800 px-2 py-1.5 font-bold text-white shadow hover:bg-zinc-700 disabled:bg-zinc-200"
-                type="submit"
-                disabled={props.isSubmitting}
-              >
-                Log in
-              </button>
-              <button
-                onClick={demoLogin}
-                type="button"
-                className="w-full rounded bg-zinc-500 px-2 py-1.5 font-bold text-white shadow hover:bg-zinc-400 disabled:bg-zinc-200"
-                disabled={props.isSubmitting}
-              >
-                Demo
-              </button>
+              <div className="flex justify-end gap-2">
+                <Button type="submit" disabled={props.isSubmitting}>
+                  Log in
+                </Button>
+                <Button
+                  onClick={demoLogin}
+                  type="button"
+                  disabled={props.isSubmitting}
+                >
+                  Demo
+                </Button>
+              </div>
             </div>
           </Form>
         )}

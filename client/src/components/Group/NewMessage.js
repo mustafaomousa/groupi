@@ -28,7 +28,7 @@ const NewMessage = ({ group }) => {
                 <p className="text-xs text-red-700">{props.errors.message}</p>
               </div>
               <button
-                className="rounded bg-zinc-800 px-1.5 py-1 text-xs font-bold text-white shadow hover:bg-zinc-700 disabled:bg-zinc-200 md:text-sm"
+                className="rounded bg-sky-700 px-1.5 py-1 text-xs font-bold text-white shadow hover:bg-sky-600 disabled:bg-zinc-200 md:text-sm"
                 type="submit"
                 disabled={props.isSubmitting}
               >

@@ -1,8 +1,8 @@
 import { useSelector } from "react-redux";
 import { Outlet } from "react-router-dom";
 
-import Header from "./Header";
-import SideNavigator from "./SideNavigator";
+import Header from "../Header";
+import SideBar from "./SideBar";
 
 const Dashboard = () => {
   const sessionUser = useSelector((state) => state.session.user);
@@ -13,8 +13,8 @@ const Dashboard = () => {
     <div className="grid w-full auto-rows-min">
       <Header />
       <div className="flex h-screen pt-[55px]">
-        <SideNavigator />
-        <div className="w-full overflow-scroll bg-zinc-50">
+        <SideBar />
+        <div className="w-full overflow-scroll bg-indigo-900 shadow-inner">
           <Outlet />
         </div>
       </div>

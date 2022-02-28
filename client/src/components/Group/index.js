@@ -5,7 +5,6 @@ import { getGroup } from "../../store/group";
 import Header from "./Header";
 import MemberList from "./MemberList";
 import Messages from "./Messages";
-import NewMember from "./NewMember";
 import NewMessage from "./NewMessage";
 
 const Group = () => {
@@ -28,14 +27,14 @@ const Group = () => {
   };
 
   return (
-    <div className="h-full bg-zinc-900">
+    <div className="h-full">
       <Header group={group} />
       <MemberList group={group} />
       <div>
         <button
           type="button"
           id="messages"
-          className="flex w-full items-center justify-between  bg-zinc-900 p-2 text-xs font-bold uppercase text-zinc-50 transition-all hover:bg-zinc-800 focus:bg-zinc-800 md:p-4 md:text-sm"
+          className="flex w-full items-center justify-between  bg-indigo-900 p-2 text-xs font-bold uppercase text-zinc-50 transition-all hover:bg-indigo-800  md:p-3 md:text-sm"
           onClick={handleToggleSection}
         >
           <span className="flex items-center uppercase">messages</span>
@@ -44,15 +43,14 @@ const Group = () => {
         <div
           className={`${
             selectedSection !== "messages" && "h-0 overflow-hidden p-0 md:p-0"
-          } max-h-[400px] overflow-scroll bg-gray-200 p-2 shadow-inner transition-all ease-in-out md:p-4`}
-          aria-labelledby="accordion-open-heading-1"
+          } max-h-[400px] overflow-scroll bg-white p-2 shadow-inner transition-all ease-in-out md:p-4`}
         >
           <Messages messages={group.messages} />
           <NewMessage group={group} />
         </div>
         <button
           id="events"
-          className=" flex w-full items-center justify-between bg-zinc-900 p-2 text-xs font-bold uppercase text-zinc-50 transition-all hover:bg-zinc-800 focus:bg-zinc-800 md:p-4 md:text-sm"
+          className="flex w-full items-center justify-between  bg-indigo-900 p-2 text-xs font-bold uppercase text-zinc-50 transition-all hover:bg-indigo-800  md:p-3 md:text-sm"
           onClick={handleToggleSection}
         >
           <span className="flex items-center uppercase">events</span>
@@ -68,7 +66,7 @@ const Group = () => {
         </div>
         <button
           id="media"
-          className="flex w-full items-center justify-between bg-zinc-900 p-2 text-xs font-bold uppercase text-zinc-50 transition-all hover:bg-zinc-800 focus:bg-zinc-800 md:p-4 md:text-sm"
+          className="flex w-full items-center justify-between  bg-indigo-900 p-2 text-xs font-bold uppercase text-zinc-50 transition-all hover:bg-indigo-800  md:p-3 md:text-sm"
           onClick={handleToggleSection}
         >
           <span className="flex items-center uppercase">media</span>
