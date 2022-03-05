@@ -10,7 +10,7 @@ const MemberList = ({ group }) => {
   if (!group.members) return null;
 
   return (
-    <div className="flex flex-wrap pt-2 transition-all">
+    <div className="flex flex-wrap gap-1 transition-all">
       {group.members &&
         Object.keys(group.members).map((memberId) => {
           const member = group.members[memberId];
@@ -18,7 +18,7 @@ const MemberList = ({ group }) => {
         })}
       <button
         onClick={toggleAddUser}
-        className="flex h-[30px] w-[30px] items-center justify-center rounded-full  border-2 bg-white object-cover transition-all hover:border-green-500 md:h-[40px] md:w-[40px]"
+        className="flex h-[30px] w-[30px] items-center justify-center rounded-full border-2 object-cover transition-all hover:border-green-500 md:h-[40px] md:w-[40px]"
       >
         +
       </button>

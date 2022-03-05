@@ -30,15 +30,15 @@ const Group = () => {
   };
 
   return (
-    <div className="flex flex-col">
+    <div className="flex h-full flex-col overflow-hidden">
       <Header group={group} />
       <Tab.Group>
-        <Tab.List className="grid grid-cols-3 bg-indigo-700 text-xs text-white/70">
+        <Tab.List className="mt-2 flex space-x-2 rounded-t  pb-2 text-xs text-white/70">
           <Tab
             className={({ selected }) =>
               `${
-                selected && "rounded-tr bg-indigo-600 font-bold text-white"
-              } py-1 uppercase transition-all`
+                selected && "border-2 font-bold"
+              } rounded-full border-pink-700 px-2 uppercase text-pink-700 transition-all`
             }
           >
             Messages
@@ -46,8 +46,8 @@ const Group = () => {
           <Tab
             className={({ selected }) =>
               `${
-                selected && "rounded-t bg-indigo-600 font-bold text-white"
-              } py-1 uppercase transition-all`
+                selected && "border-2 font-bold"
+              } rounded-full border-pink-700 px-2 uppercase text-pink-700 transition-all`
             }
           >
             Events
@@ -55,20 +55,22 @@ const Group = () => {
           <Tab
             className={({ selected }) =>
               `${
-                selected && "rounded-tl bg-indigo-600 font-bold text-white"
-              }  py-1 uppercase transition-all`
+                selected && "border-2 font-bold"
+              } rounded-full border-pink-700 px-2 uppercase text-pink-700 transition-all`
             }
           >
             Media
           </Tab>
         </Tab.List>
-        <Tab.Panels className="">
-          <Tab.Panel className="p-2">
-            <Messages messages={group.messages} />
+        <Tab.Panels className="h-full">
+          <Tab.Panel className="flex h-full flex-col space-y-2">
+            <div className="h-20 grow overflow-scroll rounded-b ">
+              <Messages messages={group.messages} />
+            </div>
             <NewMessage group={group} />
           </Tab.Panel>
-          <Tab.Panel className="p-2">events go here</Tab.Panel>
-          <Tab.Panel className="p-2">media goes here</Tab.Panel>
+          <Tab.Panel className="">events go here</Tab.Panel>
+          <Tab.Panel className="">media goes here</Tab.Panel>
         </Tab.Panels>
       </Tab.Group>
     </div>

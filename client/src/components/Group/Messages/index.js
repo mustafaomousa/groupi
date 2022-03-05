@@ -23,13 +23,21 @@ const Message = ({ message, sessionUser }) => {
       } items-start space-y-1 p-2`}
     >
       <div
-        className={`max-w-[300px] break-words rounded-t-lg border-[1px] bg-white px-2 py-0.5 text-xs shadow-sm md:text-sm ${
-          sessionUser.id === message.user.id ? "rounded-bl-lg" : "rounded-br-lg"
+        className={`max-w-[300px] break-words rounded-t-lg border-[1px]  bg-white px-2 py-1 text-sm ${
+          sessionUser.id === message.user.id
+            ? "rounded-bl-lg border-indigo-800"
+            : "rounded-br-lg border-pink-800/30"
         }`}
       >
         <p>{message.message}</p>
       </div>
-      <div className="flex text-[10px] font-bold text-white antialiased">
+      <div
+        className={`flex text-[10px] font-bold antialiased ${
+          sessionUser.id === message.user.id
+            ? "text-indigo-800"
+            : "text-pink-800"
+        }`}
+      >
         <p>{message.user.username}</p>
       </div>
     </div>

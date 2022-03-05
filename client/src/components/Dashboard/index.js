@@ -14,11 +14,10 @@ const Dashboard = () => {
     await dispatch(logout()).then(() => navigate("/"));
 
   return (
-    <div className="flex h-screen space-x-2 overflow-hidden p-2">
-      <div className="flex  w-[250px] flex-col justify-between space-y-2">
-        <div className="h-full overflow-scroll rounded bg-gray-200">
+    <div className="flex">
+      <div className="flex h-screen w-[250px] flex-col justify-between space-y-2 p-2">
+        <div className="h-full overflow-scroll rounded bg-indigo-800/10">
           <Groups />
-          {/* <Requests /> */}
         </div>
         <div className="flex flex-col space-y-2">
           <button
@@ -29,7 +28,7 @@ const Dashboard = () => {
           </button>
         </div>
       </div>
-      <div className="w-full rounded bg-gray-200">
+      <div className="h-screen w-full p-2">
         <Outlet />
       </div>
     </div>
