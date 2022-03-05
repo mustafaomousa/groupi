@@ -1,4 +1,5 @@
 import { useSelector } from "react-redux";
+import UserAvatar from "../../UserAvatar";
 
 const Messages = ({ messages }) => {
   const sessionUser = useSelector((state) => state.session.user);
@@ -28,7 +29,7 @@ const Message = ({ message, sessionUser }) => {
       >
         <p>{message.message}</p>
       </div>
-      <div className="text-[10px] antialiased">
+      <div className="flex text-[10px] font-bold text-white antialiased">
         <p>{message.user.username}</p>
       </div>
     </div>

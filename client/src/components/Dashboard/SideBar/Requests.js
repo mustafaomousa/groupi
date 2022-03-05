@@ -16,18 +16,17 @@ const Requests = () => {
     dispatch(getMemberships());
   }, [dispatch]);
 
-  if (!groupMemberships || groupMemberships === {}) return null;
-
   return (
-    <div className="text-xs transition-all md:text-sm">
-      <div className="flex items-center justify-between border-y-[1px] border-indigo-800 bg-indigo-800 p-2 text-white">
-        <p className="font-bold uppercase">requests</p>
+    <div className="spaxe-y-2">
+      <div className="flex w-full items-center justify-between px-2 text-xs font-bold uppercase">
+        <p>requests</p>
       </div>
-      <div className="bg-white">
-        {Object.keys(groupMemberships).map((membershipId) => {
-          const membership = groupMemberships[membershipId];
-          return <MembershipTab membership={membership} />;
-        })}
+      <div className="flex max-h-48 flex-col gap-2 overflow-scroll px-2">
+        {groupMemberships &&
+          Object.keys(groupMemberships).map((membershipId) => {
+            const membership = groupMemberships[membershipId];
+            return <MembershipTab membership={membership} />;
+          })}
       </div>
     </div>
   );

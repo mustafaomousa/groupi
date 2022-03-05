@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Disclosure } from "@headlessui/react";
 
 import { getMemberships } from "../../../store/memberships";
 import GroupForm from "../../../forms/GroupForm";
@@ -9,59 +10,49 @@ const Groups = () => {
   const dispatch = useDispatch();
   const groupMemberships = useSelector((state) => state.memberships.joined);
 
-  const [newGroupOpen, setNewGroupOpen] = useState(false);
-
-  const openNewGroup = () => setNewGroupOpen(true);
-  const closeNewGroup = () => setNewGroupOpen(false);
-
   useEffect(() => {
     dispatch(getMemberships());
   }, [dispatch]);
 
   return (
-    <div className="transition-all">
-      <div className="flex items-center justify-between bg-indigo-900 p-2 text-white">
-        <p className="text-xs font-bold uppercase md:text-sm">groups</p>
-        {newGroupOpen ? (
-          <Button onClick={closeNewGroup}>cancel</Button>
-        ) : (
-          <Button onClick={openNewGroup}>create</Button>
-        )}
+    <div className="space-y-2">
+      <div className="flex w-full items-center justify-between px-2 text-xs font-bold uppercase">
+        <p>groups</p>
       </div>
-      <div
-        className={`${
-          !newGroupOpen && "h-0 overflow-hidden"
-        } bg-indigo-900 transition-all`}
-      >
-        <GroupForm />
-      </div>
-      <div className="bg-white">
+      <div className="flex max-h-48 flex-col  space-y-2 overflow-scroll px-2">
         {groupMemberships &&
           Object.keys(groupMemberships).map((membershipId) => {
             const membership = groupMemberships[membershipId];
-
-            return <MembershipTab membership={membership} />;
+            return (
+              <div>
+                <Membership membership={membership} />
+              </div>
+            );
           })}
       </div>
     </div>
   );
 };
 
-const MembershipTab = ({ membership }) => {
+const Membership = ({ membership }) => {
   return (
     <a
       href={`/dashboard/group/${membership.group.id}`}
-      className="flex w-full items-start border-b-[1px] border-indigo-50 p-2 text-xs hover:bg-indigo-50 md:text-sm"
+      className="flex h-[40px] rounded border-[1px] border-indigo-700 bg-indigo-700 text-xs transition-all hover:scale-[102%] md:text-sm"
     >
-      {membership.group.profile_picture ? (
-        <img
-          src={membership.group.profile_picture}
-          className="mr-2 h-[30px] w-[30px] rounded border-[1px] border-indigo-700 bg-indigo-700 transition-all md:h-[40px] md:w-[40px]"
-        />
-      ) : (
-        <div className="mr-2 h-[30px] w-[30px] rounded border-[1px] border-indigo-700 bg-indigo-700 transition-all md:h-[40px] md:w-[40px]" />
-      )}
-      <p className="font-bold">{membership.group.name}</p>
+      <div className="">
+        {membership.group.profile_picture ? (
+          <img
+            src={membership.group.profile_picture}
+            className="object-fit h-full min-w-[40px] max-w-[40px] rounded-l"
+          />
+        ) : (
+          <div className="h-full w-10 rounded-l bg-indigo-700" />
+        )}
+      </div>
+      <div className="w-full bg-white pl-2">
+        <p>{membership.group.name}</p>
+      </div>
     </a>
   );
 };

@@ -3,7 +3,6 @@ import { Formik, Field, Form } from "formik";
 import { useDispatch } from "react-redux";
 
 import { login } from "../store/session";
-import Button from "./Button";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -24,42 +23,45 @@ const Login = () => {
       }}
     >
       {(props) => (
-        <Form className="w-full" method="post">
-          <div className="space-y-4">
-            <div className="space-y-4">
-              <div>
-                <Field
-                  className="w-full rounded border bg-zinc-50 px-2 py-1.5"
-                  name="username"
-                  placeholder="username"
-                />
-                <p className="text-xs text-red-700">{props.errors.username}</p>
-              </div>
-              <div>
-                <Field
-                  className="w-full rounded border bg-zinc-50 px-2 py-1.5"
-                  type="password"
-                  name="password"
-                  placeholder="password"
-                />
-                <p className="text-xs text-red-700">{props.errors.password}</p>
-              </div>
-            </div>
-            <div className="flex justify-end gap-2">
-              <Button type="submit" disabled={props.isSubmitting}>
-                Log in
-              </Button>
-              <Button
-                onClick={demoLogin}
-                type="button"
-                disabled={props.isSubmitting}
-              >
-                Demo
-              </Button>
-            </div>
+        <Form method="post" className="w-[250px]">
+          <p className="mb-3 text-lg font-bold uppercase">login</p>
+          <div className="mb-3">
+            <p className="mb-1 text-sm">Username</p>
+            <Field
+              className="mb-1 w-full rounded border px-2 py-1.5 transition-all"
+              type="text"
+              name="username"
+            />
+            <p className="text-xs text-red-600">{props.errors.username}</p>
+          </div>
+          <div className="mb-3">
+            <p className="mb-1 text-sm">Password</p>
+            <Field
+              className="mb-1 w-full rounded border px-2 py-1.5 transition-all"
+              type="password"
+              name="password"
+            />
+            <p className="text-xs text-red-600">{props.errors.password}</p>
+          </div>
+          <div className="flex flex-col justify-end space-y-3">
+            <button
+              className="h-[38px] rounded bg-indigo-500 text-white transition-all hover:bg-indigo-600"
+              type="submit"
+              disabled={props.isSubmitting}
+            >
+              Log in
+            </button>
+            <button
+              className="h-[38px] rounded bg-pink-500 text-white transition-all hover:bg-pink-600"
+              onClick={demoLogin}
+              type="button"
+              disabled={props.isSubmitting}
+            >
+              Demo
+            </button>
             <div className="flex justify-center">
               <Link
-                to={"join"}
+                to="join"
                 className="text-sm transition-all hover:font-semibold hover:underline"
               >
                 switch to sign up

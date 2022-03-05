@@ -32,58 +32,65 @@ const Signup = () => {
     >
       {(props) => (
         <Form className="w-full" method="post" autocomplete="false">
-          <div className="space-y-4">
-            <div className="space-y-4">
-              <div>
+          <p className="mb-3 text-lg font-bold uppercase">sign up</p>
+          <div className="grid grid-cols-2 gap-5">
+            <div className="w-[250px]">
+              <div className="mb-3">
+                <p className="mb-1 text-sm">Username</p>
                 <Field
-                  className="w-full rounded border bg-zinc-50 px-2 py-1.5"
+                  className="mb-1 w-full rounded border px-2 py-1.5 transition-all"
+                  type="text"
                   name="username"
-                  placeholder="username"
                   required
                 />
                 <p className="text-xs text-red-700">{props.errors.username}</p>
               </div>
-              <div>
+              <div className="mb-3">
+                <p className="mb-1 text-sm">Email</p>
                 <Field
-                  className="w-full rounded border bg-zinc-50 px-2 py-1.5"
+                  className="mb-1 w-full rounded border px-2 py-1.5 transition-all"
                   name="email"
-                  placeholder="email"
                   type="email"
                   required
                 />
                 <p className="text-xs text-red-700">{props.errors.email}</p>
               </div>
-              <div>
+              <div className="mb-3">
+                <p className="mb-1 text-sm">First name</p>
                 <Field
-                  className="w-full rounded border bg-zinc-50 px-2 py-1.5"
+                  className="mb-1 w-full rounded border px-2 py-1.5 transition-all"
+                  type="text"
                   name="f_name"
-                  placeholder="first name"
                   required
                 />
                 <p className="text-xs text-red-700">{props.errors.f_name}</p>
               </div>
-              <div>
+              <div className="mb-3">
+                <p className="mb-1 text-sm">Last name</p>
                 <Field
-                  className="w-full rounded border bg-zinc-50 px-2 py-1.5"
+                  className="mb-1 w-full rounded border px-2 py-1.5 transition-all"
+                  type="text"
                   name="l_name"
-                  placeholder="last name"
                   required
                 />
                 <p className="text-xs text-red-700">{props.errors.l_name}</p>
               </div>
-              <div className="flex flex-col space-y-1">
-                <p className="pl-1 text-xs">birthday</p>
+            </div>
+            <div className="w-[250px]">
+              <div className="mb-3">
+                <p className="mb-1 text-sm">Birthday</p>
                 <Field
-                  className="w-full rounded border bg-zinc-50 px-2 py-1.5"
+                  className="mb-1 w-full rounded border px-2 py-1.5 transition-all"
                   name="dob"
                   placeholder="birthday"
                   type="date"
                 />
                 <p className="text-xs text-red-700">{props.errors.dob}</p>
               </div>
-              <div>
+              <div className="mb-3">
+                <p className="mb-1 text-sm">Password</p>
                 <Field
-                  className="w-full rounded border bg-zinc-50 px-2 py-1.5"
+                  className="mb-1 w-full rounded border px-2 py-1.5 transition-all"
                   type="password"
                   name="confirm_password"
                   placeholder="confirm password"
@@ -92,9 +99,10 @@ const Signup = () => {
                   {props.errors.confirm_password}
                 </p>
               </div>
-              <div>
+              <div className="mb-3">
+                <p className="mb-1 text-sm">Confirm password</p>
                 <Field
-                  className="w-full rounded border bg-zinc-50 px-2 py-1.5"
+                  className="mb-1 w-full rounded border px-2 py-1.5 transition-all"
                   type="password"
                   name="password"
                   placeholder="password"
@@ -102,19 +110,21 @@ const Signup = () => {
                 <p className="text-xs text-red-700">{props.errors.password}</p>
               </div>
             </div>
-            <div className="flex justify-end">
-              <Button type="submit" disabled={props.isSubmitting}>
-                Sign up
-              </Button>
-            </div>
-            <div className="flex justify-center">
-              <Link
-                to={"/"}
-                className="text-sm transition-all hover:font-semibold hover:underline"
-              >
-                switch to login
-              </Link>
-            </div>
+          </div>
+          <div className="flex w-full flex-col items-center justify-end space-y-3">
+            <button
+              className="h-[38px] w-full rounded bg-indigo-500 text-white transition-all hover:bg-indigo-600"
+              type="submit"
+              disabled={props.isSubmitting}
+            >
+              Sign up
+            </button>
+            <Link
+              to={"/"}
+              className="text-sm transition-all hover:font-semibold hover:underline"
+            >
+              switch to login
+            </Link>
           </div>
         </Form>
       )}
