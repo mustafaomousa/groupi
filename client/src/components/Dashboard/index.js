@@ -1,31 +1,35 @@
-import { useSelector } from "react-redux";
-import { Outlet } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Outlet, useNavigate } from "react-router-dom";
+import { logout } from "../../store/session";
 
-import Header from "../Header";
-import Requests from "./SideBar/Requests";
-import SideBar from "./SideBar";
-import Groups from "./SideBar/Groups";
-import User from "./User";
-import Button from "../Button";
+import Groups from "./Groups";
 
 const Dashboard = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const sessionUser = useSelector((state) => state.session.user);
 
-  if (!sessionUser) return <p>no user</p>;
+  const logoutUser = async () =>
+    await dispatch(logout()).then(() => navigate("/"));
 
   return (
-    <div className="flex h-screen space-x-2 overflow-hidden p-2 transition-all">
-      <div className="flex min-w-[220px] max-w-[220px] flex-col justify-between rounded-xl border-2 border-indigo-800 transition-all md:w-[300px]">
-        <div className="space-y-2">
-          <User />
+    <div className="flex h-screen space-x-2 overflow-hidden p-2">
+      <div className="flex  w-[250px] flex-col justify-between space-y-2">
+        <div className="h-full overflow-scroll rounded bg-gray-200">
           <Groups />
-          <Requests />
+          {/* <Requests /> */}
         </div>
-        <div className="flex justify-end p-2">
-          <Button>logout</Button>
+        <div className="flex flex-col space-y-2">
+          <button
+            onClick={logoutUser}
+            className="h-[38px] rounded bg-indigo-500 text-white transition-all hover:bg-indigo-600"
+          >
+            Log out
+          </button>
         </div>
       </div>
-      <div className="w-full max-w-[700px] overflow-scroll rounded-xl border-2 border-indigo-700 transition-all lg:col-span-5">
+      <div className="w-full rounded bg-gray-200">
         <Outlet />
       </div>
     </div>
