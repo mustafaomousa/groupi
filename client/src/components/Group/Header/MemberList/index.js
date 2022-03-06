@@ -1,5 +1,5 @@
 import { useState } from "react";
-import UserAvatar from "../../UserAvatar";
+import UserAvatar from "../../../UserAvatar";
 import NewMember from "./NewMember";
 
 const MemberList = ({ group }) => {

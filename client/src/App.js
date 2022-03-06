@@ -2,12 +2,11 @@ import { useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
-import Login from "./components/Login";
+import Login from "./components/Welcome/Login";
 import Welcome from "./components/Welcome";
 import { authenticate } from "./store/session";
-import Signup from "./components/Signup";
+import Signup from "./components/Welcome/Signup";
 import Dashboard from "./components/Dashboard";
-import GroupForm from "./forms/GroupForm";
 import Group from "./components/Group";
 
 const App = () => {

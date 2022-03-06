@@ -30,7 +30,7 @@ const Membership = ({ membership }) => {
   return (
     <a
       href={`/dashboard/group/${membership.group.id}`}
-      className="flex h-[40px] items-center justify-start space-x-2 px-3 text-sm hover:bg-indigo-200"
+      className="flex h-[40px] items-center justify-start space-x-2 px-3 text-sm hover:bg-indigo-700 hover:text-white"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"

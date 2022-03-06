@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { Formik, Field, Form } from "formik";
 import { useDispatch } from "react-redux";
 
-import { login } from "../store/session";
+import { login } from "../../store/session";
 
 const Login = () => {
   const dispatch = useDispatch();

@@ -23,10 +23,10 @@ const Message = ({ message, sessionUser }) => {
       } items-start space-y-1 p-2`}
     >
       <div
-        className={`max-w-[300px] break-words rounded-t-lg border-[1px]  bg-white px-2 py-1 text-sm ${
+        className={`max-w-[300px] break-words rounded-xl border-[1px] px-2 py-1 text-sm text-white shadow-md ${
           sessionUser.id === message.user.id
-            ? "rounded-bl-lg border-indigo-800"
-            : "rounded-br-lg border-pink-800/30"
+            ? "rounded-br-none bg-zinc-800/10 text-zinc-800"
+            : "rounded-bl-none bg-indigo-700 text-white"
         }`}
       >
         <p>{message.message}</p>
@@ -34,8 +34,8 @@ const Message = ({ message, sessionUser }) => {
       <div
         className={`flex text-[10px] font-bold antialiased ${
           sessionUser.id === message.user.id
-            ? "text-indigo-800"
-            : "text-pink-800"
+            ? "text-zinc-800/50"
+            : "text-indigo-700/50"
         }`}
       >
         <p>{message.user.username}</p>

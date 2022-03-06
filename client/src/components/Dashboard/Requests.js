@@ -5,8 +5,8 @@ import {
   acceptGroupMembershipRequest,
   declineGroupMembershipRequest,
   getMemberships,
-} from "../../../store/memberships";
-import Button from "../../Button";
+} from "../../store/memberships";
+import Button from "../Button";
 
 const Requests = () => {
   const dispatch = useDispatch();

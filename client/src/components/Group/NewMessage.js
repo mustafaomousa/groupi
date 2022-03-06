@@ -16,22 +16,20 @@ const NewMessage = ({ group }) => {
       {(props) => (
         <Form className="w-full" method="post">
           <div className="flex w-full flex-col items-end justify-end space-y-2">
-            <div className="flex w-full items-end justify-end space-y-1">
+            <div className="flex w-full items-end justify-end">
               <Field
-                rows={2}
                 component="textarea"
-                className="text-md mr-2 w-full rounded-b-2xl rounded-tl-2xl border-[1px] border-indigo-800 bg-white focus:ring-0 md:text-sm"
+                className="w-full resize-none rounded border-[1px] border-zinc-800/20 text-sm shadow focus:ring-0"
                 name="message"
-                placeholder="message"
               />
               <p className="text-xs text-red-700">{props.errors.message}</p>
             </div>
             <button
-              className="h-[38px] w-full rounded bg-indigo-600 text-white transition-all hover:bg-indigo-700"
+              className="rounded bg-indigo-700 py-1 px-2 text-xs font-bold text-white shadow"
               type="submit"
               disabled={props.isSubmitting}
             >
-              Send
+              <p>Send</p>
             </button>
           </div>
         </Form>
