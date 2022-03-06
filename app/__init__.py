@@ -4,6 +4,7 @@ from flask_login import LoginManager
 from flask_migrate import Migrate
 from flask_cors import CORS
 from flask_wtf.csrf import generate_csrf
+from flask_socketio import SocketIO, send, join_room, leave_room
 
 from .config import Config
 from .models import db, User
@@ -14,6 +15,7 @@ from .api.membership_routes import membership_routes
 
 app = Flask(__name__)
 
+socketio = SocketIO(app, cors_allowed_origins="*")
 login_manager = LoginManager(app)
 
 @login_manager.user_loader
@@ -28,6 +30,34 @@ app.register_blueprint(group_routes, url_prefix='/api/groups')
 app.register_blueprint(membership_routes, url_prefix='/api/memberships')
 Migrate(app, db)
 CORS(app)
+
+if __name__ == '__main__':
+    socketio.run(app)
+
+@socketio.on("connect")
+def connected():
+    print("connected")
+
+@socketio.on("disconnect")
+def disconnected():
+    print("disconnected")
+
+@socketio.on("join")
+def on_join(data):
+    room = data['room']
+    join_room(room)
+
+@socketio.on("leave")
+def on_join(data):
+    room = data['room']
+    leave_room(room)
+
+@socketio.on("message")
+def handle_message(data):
+    message = data['message']
+    room = data['room']
+    send(message, to=room)
+    return None
 
 @app.before_request
 def https_redirect():

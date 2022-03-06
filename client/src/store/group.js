@@ -1,3 +1,5 @@
+import socket from "../socket";
+
 const SET_GROUP = "group/SET_GROUP";
 const SET_MEMBER = "group/SET_MEMBER";
 const ADD_MESSAGE = "group/ADD_MESSAGE";
@@ -12,7 +14,7 @@ const setMember = (member) => ({
   payload: member,
 });
 
-const addMessage = (message) => ({
+export const addMessage = (message) => ({
   type: ADD_MESSAGE,
   payload: message,
 });
@@ -76,6 +78,7 @@ export const createGroupMessage = (groupId, message) => async (dispatch) => {
   if (response.ok) {
     const data = await response.json();
     dispatch(addMessage(data));
+    socket.emit("message", { message: data, room: groupId });
     return null;
   } else if (response.status < 500) {
     const data = await response.json();

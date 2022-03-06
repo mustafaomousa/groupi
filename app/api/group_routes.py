@@ -90,4 +90,3 @@ def group_messages(group_id):
             
             return group_message.to_dict()
         return {'errors': validation_errors_to_error_messages(form.errors)}, 401
-

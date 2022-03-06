@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import socket from "../../socket";
 
 import { getGroup } from "../../store/group";
 import Header from "./Header";
@@ -17,6 +18,10 @@ const Group = () => {
     dispatch(getGroup(params.groupId));
   }, [dispatch]);
 
+  useEffect(() => {
+    group && socket.emit("join", { room: group.id });
+  }, [group]);
+
   if (!group) return null;
 
   return (
@@ -25,7 +30,7 @@ const Group = () => {
         <Header group={group} />
       </div>
       <div className="grow overflow-scroll p-3">
-        <Messages messages={group.messages} />
+        <Messages />
       </div>
       <div className="p-3">
         <NewMessage group={group} />

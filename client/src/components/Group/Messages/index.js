@@ -1,8 +1,24 @@
-import { useSelector } from "react-redux";
-import UserAvatar from "../../UserAvatar";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-const Messages = ({ messages }) => {
+import socket from "../../../socket";
+import { addMessage } from "../../../store/group";
+
+const Messages = () => {
+  const dispatch = useDispatch();
+
+  const messages = useSelector((state) => state.group.messages);
   const sessionUser = useSelector((state) => state.session.user);
+
+  useEffect(() => {
+    getMessages();
+  }, []);
+
+  const getMessages = () => {
+    socket.on("message", (message) => {
+      dispatch(addMessage(message));
+    });
+  };
 
   return (
     <div>
